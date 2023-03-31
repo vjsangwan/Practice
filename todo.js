@@ -48,7 +48,7 @@ function renderlist() {
         // Create a checkbox element
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.id = todos[i].name;
+        checkbox.id = spaceRemover(todos[i].name);
         checkbox.checked = todos[i].isCompleted;
         checkbox.addEventListener("click", function(e){
            for(j=0;j<todos.length;j++){
@@ -66,7 +66,7 @@ function renderlist() {
         
         del.addEventListener("click", function(e){
             //Delete from DOM
-            let ListToBeDeleted = document.querySelector(`#${this.id}`);
+            let ListToBeDeleted = document.querySelector(`#${spaceRemover(this.id)}`);
            ListToBeDeleted.parentNode.remove(ListToBeDeleted);
            //Delete from Array
            const ObjectToBeDeleted=TodoItems;
@@ -86,4 +86,9 @@ function renderlist() {
     }
 }
 
+function spaceRemover(str) {
+    // Remove space from string and return it
+    str = str.replace(/\s/g, '');
+    return str
+}
 
